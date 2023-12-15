@@ -90,8 +90,6 @@ jobs:
           command_timeout: 200m
           script: |
             docker pull ${{secrets.DOCKER_USERNAME}}/pipeline:${{github.sha}}
-            docker stop pipeline
-            docker rm pipeline
             docker run -d --name pipeline -p 80:80 {{secrets.DOCKER_USERNAME}}/pipeline:${{github.sha}}
         
            
