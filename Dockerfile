@@ -4,6 +4,6 @@ WORKDIR /pipe
 
 COPY . .
 
-EXPOSE 8000
+EXPOSE 8080
 
 CMD [ "Python","pipe.py","--host","0.0.0.0" ]
