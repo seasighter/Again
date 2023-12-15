@@ -6,4 +6,4 @@ COPY . .
 
 EXPOSE 8000
 
-CMD [ "Python","pipe.py" ]
+CMD [ "Python","pipe.py","--host","0.0.0.0" ]
