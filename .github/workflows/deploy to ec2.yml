@@ -41,9 +41,10 @@
 #           key: ${{ secrets.EC2_PRIVATE_KEY }}
 #           command_timeout: 200m
 #           script: |
+              #docker pull ${{secrets.DOCKER_USERNAME}}/pipeline:${{github.sha}}
 #             docker stop pipeline
 #             docker rm pipeline
-#             docker pull ${{secrets.DOCKER_USERNAME}}/pipeline:${{github.sha}}
+#             
 #             docker run -d --name pipeline -p 80:80 {{secrets.DOCKER_USERNAME}}/pipeline:${{github.sha}}
 name: Deploy to EC2
 
@@ -87,5 +88,10 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           command_timeout: 200m
-       
+          script: |
+            docker pull ${{secrets.DOCKER_USERNAME}}/pipeline:${{github.sha}}
+            docker stop pipeline
+            docker rm pipeline
+            docker run -d --name pipeline -p 80:80 {{secrets.DOCKER_USERNAME}}/pipeline:${{github.sha}}
+        
            
