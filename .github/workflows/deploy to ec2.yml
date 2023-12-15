@@ -89,8 +89,7 @@ jobs:
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           command_timeout: 200m
           script: |
-
-            docker pull  akhilesh6956/pipeline
-            docker run -d --name pipeline -p 8000:8080 akhilesh6956/pipeline
+            docker pull ${{secrets.DOCKER_USERNAME}}/pipeline
+            docker run -d --name pipeline -p 8000:8080 {{secrets.DOCKER_USERNAME}}/pipeline
         
            
