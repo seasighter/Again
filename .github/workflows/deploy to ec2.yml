@@ -79,7 +79,7 @@ jobs:
         with:
              context: .
              push: true
-             tags: akhilesh6956/pipeline:${{ github.sha}}  # dockerhub repository name akhilesh6956/-----
+             tags: akhilesh6956/pipeline  # dockerhub repository name akhilesh6956/-----
 
       - name: Update Docker image on EC2 instance
         uses: appleboy/ssh-action@master
@@ -90,6 +90,8 @@ jobs:
           command_timeout: 200m
           script: |
             docker pull ${{secrets.DOCKER_USERNAME}}/pipeline:${{github.sha}}
+            docker stop pipeline
+            docker rm pipeline
             docker run -d --name pipeline -p 80:80 {{secrets.DOCKER_USERNAME}}/pipeline:${{github.sha}}
         
            
