@@ -8,7 +8,7 @@ COPY . .
 
 # Install Python dependencies
 RUN pip install --upgrade pip
-RUN pip install -r requirement.txt
+
 
 EXPOSE 8000
 
